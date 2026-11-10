@@ -50,4 +50,5 @@ group :development, :test do
 
   # rspec for testing
   gem "rspec-rails"
+  gem "shoulda"
 end
