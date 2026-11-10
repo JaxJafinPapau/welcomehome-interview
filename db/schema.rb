@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_10_210935) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_10_214337) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -19,6 +19,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_10_210935) do
     t.date "move_out"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "unit_id", null: false
+    t.bigint "resident_id", null: false
+    t.index ["resident_id"], name: "index_occupancies_on_resident_id"
+    t.index ["unit_id"], name: "index_occupancies_on_unit_id"
   end
 
   create_table "residents", force: :cascade do |t|
@@ -33,4 +37,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_10_210935) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "occupancies", "residents"
+  add_foreign_key "occupancies", "units"
 end
