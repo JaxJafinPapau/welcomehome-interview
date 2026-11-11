@@ -3,6 +3,13 @@ class RentRollService
     @date = date
   end
 
+  def report
+    results = execute_query
+    p results.columns
+    results.rows.each {|row| p row }
+    p " "
+  end
+
   def execute_query
   sql = <<~SQL
       SELECT
