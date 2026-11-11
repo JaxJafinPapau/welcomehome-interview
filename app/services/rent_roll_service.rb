@@ -14,6 +14,7 @@ class RentRollService
     results = execute_query
     p "Vacancies: #{calculate_vacancies(results)}"
     p "Occupancies: #{calculate_occupancies(results)}"
+    p "Leased units: #{calculate_leased_units(results)}"
   end
 
   def calculate_vacancies(results)
@@ -22,6 +23,10 @@ class RentRollService
 
   def calculate_occupancies(results)
     results.count {|r| r['status'] == 'current' }
+  end
+
+  def calculate_leased_units(results)
+    results.count {|r| r['status'] == 'current' || r['status'] == 'future' }
   end
 
   def execute_query

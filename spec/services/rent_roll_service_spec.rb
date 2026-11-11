@@ -43,4 +43,16 @@ RSpec.describe RentRollService, type: :service do
       expect(service.calculate_occupancies(rows)).to eq(1)
     end
   end
+  
+  context '#calculate_leased_units' do
+    let!(:current_occupancy) { create(:occupancy) }
+    let!(:future_occupancy) { create(:occupancy, move_in: nil, move_out: nil) }
+    let!(:past_occupancy) { create(:occupancy, move_in: Date.today - 2.days, move_out: Date.today - 1.day, unit: vacant_unit) }
+    let!(:vacant_unit) { create(:unit) }
+    let(:rows) { service.execute_query }
+
+    it 'should calculate 2 leased units' do
+      expect(service.calculate_leased_units(rows)).to eq(2)
+    end
+  end
 end
