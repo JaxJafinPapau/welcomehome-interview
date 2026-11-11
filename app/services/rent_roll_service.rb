@@ -10,6 +10,10 @@ class RentRollService
     p " "
   end
 
+  def calculate_vacancies(results)
+    results.count {|r| r['status'].nil? }
+  end
+
   def execute_query
   sql = <<~SQL
       SELECT

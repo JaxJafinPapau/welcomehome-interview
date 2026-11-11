@@ -19,4 +19,15 @@ RSpec.describe RentRollService, type: :service do
       expect(service.execute_query.first['resident_name']).to eq(occupancy.resident.name)
     end
   end
+
+  context '#calculate_vacancies' do
+    let!(:current_occupancy) { create(:occupancy) }
+    let!(:future_occupancy) { create(:occupancy, move_in: nil, move_out: nil) }
+    let!(:vacant_unit) { create(:unit) }
+    let(:rows) { service.execute_query }
+
+    it 'should calculate 1 vacancy' do
+      expect(service.calculate_vacancies(rows)).to eq(1)
+    end
+  end
 end
