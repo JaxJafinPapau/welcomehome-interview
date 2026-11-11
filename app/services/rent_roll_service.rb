@@ -13,10 +13,15 @@ class RentRollService
   def statistics
     results = execute_query
     p "Vacancies: #{calculate_vacancies(results)}"
+    p "Occupancies: #{calculate_occupancies(results)}"
   end
 
   def calculate_vacancies(results)
     results.count {|r| r['status'].nil? }
+  end
+
+  def calculate_occupancies(results)
+    results.count {|r| r['status'] == 'current' }
   end
 
   def execute_query
