@@ -15,6 +15,7 @@ class RentRollService
     p "Vacancies: #{calculate_vacancies(results)}"
     p "Occupancies: #{calculate_occupancies(results)}"
     p "Leased units: #{calculate_leased_units(results)}"
+    p " "
   end
 
   def calculate_vacancies(results)
