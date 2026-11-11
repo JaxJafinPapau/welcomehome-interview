@@ -10,6 +10,11 @@ class RentRollService
     p " "
   end
 
+  def statistics
+    results = execute_query
+    p "Vacancies: #{calculate_vacancies(results)}"
+  end
+
   def calculate_vacancies(results)
     results.count {|r| r['status'].nil? }
   end
