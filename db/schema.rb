@@ -19,8 +19,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_10_214337) do
     t.date "move_out"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "unit_id", null: false
-    t.bigint "resident_id", null: false
+    t.bigint "unit_id"
+    t.bigint "resident_id"
     t.index ["resident_id"], name: "index_occupancies_on_resident_id"
     t.index ["unit_id"], name: "index_occupancies_on_unit_id"
   end
