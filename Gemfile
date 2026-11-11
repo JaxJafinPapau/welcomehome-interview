@@ -55,4 +55,5 @@ group :development, :test do
   gem "rspec-rails"
   gem "shoulda"
   gem "pry"
+  gem "factory_bot_rails"
 end
