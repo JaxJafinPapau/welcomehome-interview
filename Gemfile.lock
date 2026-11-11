@@ -400,6 +400,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 8.1.4, >= 8.1.4.1)
   rspec-rails
+  rubocop
   rubocop-rails-omakase
   shoulda
   solid_cable

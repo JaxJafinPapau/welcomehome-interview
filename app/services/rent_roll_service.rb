@@ -6,7 +6,7 @@ class RentRollService
   def report
     results = execute_query
     p results.columns
-    results.rows.each {|row| p row }
+    results.rows.each { |row| p row }
     p " "
   end
 
@@ -19,15 +19,15 @@ class RentRollService
   end
 
   def calculate_vacancies(results)
-    results.count {|r| r['status'].nil? }
+    results.count { |r| r["status"].nil? }
   end
 
   def calculate_occupancies(results)
-    results.count {|r| r['status'] == 'current' }
+    results.count { |r| r["status"] == "current" }
   end
 
   def calculate_leased_units(results)
-    results.count {|r| r['status'] == 'current' || r['status'] == 'future' }
+    results.count { |r| r["status"] == "current" || r["status"] == "future" }
   end
 
   def execute_query
@@ -52,6 +52,6 @@ class RentRollService
     SQL
 
     ActiveRecord::Base.connection
-    .exec_query(ActiveRecord::Base.sanitize_sql_array([sql, date: @date]))
+    .exec_query(ActiveRecord::Base.sanitize_sql_array([ sql, date: @date ]))
   end
 end
