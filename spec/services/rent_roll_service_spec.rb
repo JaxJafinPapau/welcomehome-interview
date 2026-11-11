@@ -23,6 +23,7 @@ RSpec.describe RentRollService, type: :service do
   context '#calculate_vacancies' do
     let!(:current_occupancy) { create(:occupancy) }
     let!(:future_occupancy) { create(:occupancy, move_in: nil, move_out: nil) }
+    let!(:past_occupancy) { create(:occupancy, move_in: Date.today - 2.days, move_out: Date.today - 1.day, unit: vacant_unit) }
     let!(:vacant_unit) { create(:unit) }
     let(:rows) { service.execute_query }
 
@@ -34,6 +35,7 @@ RSpec.describe RentRollService, type: :service do
   context '#calculate_occupancies' do
     let!(:current_occupancy) { create(:occupancy) }
     let!(:future_occupancy) { create(:occupancy, move_in: nil, move_out: nil) }
+    let!(:past_occupancy) { create(:occupancy, move_in: Date.today - 2.days, move_out: Date.today - 1.day, unit: vacant_unit) }
     let!(:vacant_unit) { create(:unit) }
     let(:rows) { service.execute_query }
 
